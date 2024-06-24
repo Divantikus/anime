@@ -1,0 +1,41 @@
+.footer{
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  height: 115px;
+  background: #383838 ;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 15px 0 0 10px;
+  margin-top: 15px;
+}
+.leftSide{
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 280px;
+}
+.text{
+  color: #ddd;
+  font-size: 10.3px;
+  width: 485px;
+  line-height: 1.42857143;
+}
+.divImg{
+  position: relative;
+  top: -15px;
+  width: 305px;
+  height: 100px;
+  background: #383838 url("/src/img/footer/footer.png") no-repeat;
+}
+.rightSide{
+}
+.emailLink{
+  color: #ddd;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
+}

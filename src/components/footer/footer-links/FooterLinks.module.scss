@@ -1,0 +1,21 @@
+.linksContainer{
+  display: flex;
+  justify-content: space-between;
+  font-size: 17.8px;
+  margin-bottom: 17px;
+  :nth-child(5) > a:after{
+    content: "";
+  }
+  width: 475px;
+}
+.link{
+  color: #ddd;
+  text-decoration: none;
+  &:after{
+    content: "|";
+    margin-left: 10px;
+  }
+  &:hover{
+    text-decoration: underline;
+  }
+}

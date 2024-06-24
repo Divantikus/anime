@@ -1,0 +1,10 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  background: #D3D3D3 url("src/img/main/main-img.png") no-repeat top;
+  min-height: calc(100vh - 215px);
+}
+#root{
+  height: calc(100vh - 215px);
+}

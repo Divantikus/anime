@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.mainSection {
+  display: flex;
+  min-height: 100%;
+  width: 1175px;
+  margin: 225px auto 0 auto;
+  flex-direction: column;
+  font-family: "PT Sans";
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 880px 280px;
+  grid-template-rows: 170px auto;
+  gap: 0 15px;
+  flex: 1 1 auto;
+}
