@@ -1,12 +1,12 @@
 import {useQuery} from "react-query";
 import {getDataService} from "src/services/getDataFromServer.ts";
 
-export const useNewsData = () => {
+export const useQuerySchedule = () => {
   return useQuery({
-      queryKey: ["newsData"],
+      queryKey: ["getDataSchedule"],
       queryFn: async () => {
-          return await getDataService.getNewsData()
+          return await getDataService.getDataSchedule()
       },
-      select: (axiosRes) => axiosRes?.data
+      select: (data) => data?.data
   })
 }

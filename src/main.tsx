@@ -4,7 +4,14 @@ import {router} from "src/router/Router.tsx";
 import "./main.scss"
 import {QueryClient, QueryClientProvider} from "react-query";
 
-const client = new QueryClient()
+const client = new QueryClient({
+    defaultOptions: {
+        queries:{
+            refetchOnWindowFocus: false
+        }
+    }
+})
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={client}>
         <RouterProvider router={router}/>

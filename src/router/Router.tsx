@@ -1,7 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
-import {Releases} from "src/components/pages/Releases.tsx";
+import {Schedule} from "src/components/pages/Schedule.tsx";
 import {App} from "src/components/App.tsx";
 import {MainPage} from "src/components/pages/MainPage.tsx";
+import {Releases} from "src/components/pages/Releases.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -14,7 +15,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "releases/",
-                element: <Releases/>
+                element: <Releases/>,
+            },
+            {
+                path: "schedule/",
+                element: <Schedule/>
             },
 
         ],

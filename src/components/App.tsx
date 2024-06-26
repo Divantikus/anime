@@ -3,6 +3,7 @@ import {Outlet} from "react-router-dom";
 import {Footer} from "src/components/footer/Footer.tsx";
 import {Sidebar} from "src/components/sidebar/Sidebar.tsx";
 import  style from './style.module.scss'
+
 export const App = () => {
     return (
         <section className={style.mainSection}>

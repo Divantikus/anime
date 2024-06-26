@@ -12,7 +12,10 @@
 .wrapper {
   display: grid;
   grid-template-columns: 880px 280px;
-  grid-template-rows: 170px auto;
+  grid-template-rows: 170px 1780px auto;
   gap: 0 15px;
   flex: 1 1 auto;
+}
+.main{
+  grid-row: span 2;
 }

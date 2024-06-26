@@ -1,17 +1,13 @@
+import {shortDescriptionAnime} from "src/services/types/DataFromServerTypes.ts";
+
 interface CardStyles{
     width: number,
+    height: number,
     border: number,
     margin: number,
     fontSize: {title: number, episode: number, description: number},
 }
-interface TitleInfo {
-    title: string,
-    episode: string,
-    description: string,
-    img: string,
-    id: string
-}
 export interface CardProps{
     styles: CardStyles,
-    info: TitleInfo
+    info: shortDescriptionAnime
 }
