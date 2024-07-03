@@ -1,4 +1,4 @@
-import {shortDescriptionAnime} from "src/services/types/DataFromServerTypes.ts";
+import {ShortDescriptionAnime} from "src/services/types/DataFromServerTypes.ts";
 
 interface CardStyles{
     width: number,
@@ -9,5 +9,5 @@ interface CardStyles{
 }
 export interface CardProps{
     styles: CardStyles,
-    info: shortDescriptionAnime
+    info: ShortDescriptionAnime
 }

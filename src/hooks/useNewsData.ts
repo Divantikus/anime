@@ -1,12 +1,14 @@
-import {useQuery} from "react-query";
 import {getDataService} from "src/services/getDataFromServer.ts";
+import {useQuery} from "react-query";
 
 export const useNewsData = () => {
   return useQuery({
       queryKey: ["newsData"],
-      queryFn: async () => {
-          return await getDataService.getNewsData()
+      queryFn: () => {
+          return getDataService.getNewsData()
       },
-      select: (axiosRes) => axiosRes?.data
+      select: (axiosRes) => {
+          return axiosRes?.data
+      }
   })
 }

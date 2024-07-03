@@ -1,12 +1,12 @@
 import style from './DayWeek.module.scss'
 import {Link} from "react-router-dom";
 import {Card} from "src/components/Card/Card.tsx";
-import {shortDescriptionAnime} from "src/services/types/DataFromServerTypes.ts";
+import {ShortDescriptionAnime} from "src/services/types/DataFromServerTypes.ts";
 import {FC} from "react";
 const cardStyles = {fontSize: {title: 13, episode: 12, description: 11}, border: 3, margin: 1, width: 200, height: 280}
 
 interface DayWeekProps {
-    titles: shortDescriptionAnime[],
+    titles: ShortDescriptionAnime[],
     dayWeek: 'ПОНЕДЕЛЬНИК' | 'ВТОРНИК' | 'СРЕДА' | 'ЧЕТВЕРГ' | 'ПЯТНИЦА' | 'СУББОТА' | 'ВОСКРЕСЕНЬЕ'
 }
 

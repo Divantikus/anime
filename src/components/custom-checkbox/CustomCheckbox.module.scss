@@ -1,0 +1,49 @@
+.new{
+  width: 120px;
+  height: 35px;
+  overflow: hidden;
+  border-radius: 4px;
+  position: relative;
+  display: inline-block;
+  background: #FFFFFF;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.point{
+  right: 0;
+  width: 15px;
+  height: 100%;
+  border-radius: 4px;
+  position: absolute;
+  //border: 1px solid black;
+  background: #c7c7c7;
+  transition: 1s;
+}
+.inPoint{
+  position: relative;
+}
+.leftText{
+  position: absolute;
+  padding: 8px 0 0 25px;
+  left: 15px;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.rightText{
+  position: absolute;
+  padding: 8px;
+  right: 15px;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.check{
+  display: none;
+}

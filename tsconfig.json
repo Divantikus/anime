@@ -8,7 +8,8 @@
     "baseUrl": ".",
     "paths": {
       "src/*": ["src/*"],
-      "mediaFromServer/*": ["Backend/*"]
+      "mediaFromServer/*": ["Backend/*"],
+      "public/*": ["public/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

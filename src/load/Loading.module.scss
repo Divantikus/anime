@@ -4,7 +4,7 @@
   border-radius: 50%;
   width: 48px;
   height: 48px;
-  color: #fff;
+  color: #000000;
 }
 .loader:before,
 .loader:after {
@@ -20,7 +20,7 @@
   animation: 1s spin linear infinite;
 }
 .loader:after {
-  color: #FF3D00;
+  color: #ff0000;
   transform: rotateY(70deg);
   animation-delay: .4s;
 }
@@ -69,4 +69,10 @@
   87% {
     box-shadow: .2em -.2em 0 0 currentcolor;
   }
+}
+.loadingWrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

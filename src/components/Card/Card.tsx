@@ -1,17 +1,18 @@
+import {decodingJpgImg} from "src/components/pages/MainPage.tsx";
 import {CardProps} from "src/components/Card/CardsTypes.ts";
 import {FC} from "react";
 import style from './Card.module.scss'
-import {linkToBackendMedia} from "src/components/pages/MainPage.tsx";
 
 
 export const Card: FC<CardProps> = ({styles, info}) => {
+
   return (
           <figure
               className={style.figure}
               style={{width: styles.width, borderWidth: styles.border, height: styles.height}}
               key={info.id}
           >
-              <img src={linkToBackendMedia + info.image} alt="poster" className={style.cardImg}/>
+              <img src={decodingJpgImg + info.image_data} alt="poster" className={style.cardImg}/>
               <figcaption className={style.description}>
                   <h2 className={style.cardTitle}  style={{fontSize: `${styles.fontSize.title}pt`}}>
                       {info.title}
