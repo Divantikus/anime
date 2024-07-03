@@ -7,7 +7,8 @@ export default defineConfig({
   resolve: {
     alias: {
       src: "/src",
-      mediaFromServer: "/Backend"
+      mediaFromServer: "/Backend",
+      public: "/public"
     },
   },
 })

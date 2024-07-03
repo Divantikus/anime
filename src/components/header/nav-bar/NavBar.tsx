@@ -5,12 +5,14 @@ const navBarButtons: INavBarButton[] = [
     {text: "ГЛАВНАЯ", link: "/", className: `${style.navBarBtn1}`},
     {text: "РЕЛИЗЫ", link: "/releases", className: `${style.navBarBtn2}`},
     {text: "РАСПИСАНИЕ", link: "/schedule", className: `${style.navBarBtn3}`},
-    {text: "СЛУЧАЙНОЕ", link: "", className: `${style.navBarBtn4}`},
+    {text: "ЛОГИН", link: "/login", className: `${style.navBarBtn4}`},
     {text: "ПРИЛОЖЕНИЕ", link: "", className: `${style.navBarBtn5}`},
     {text: "КОМАНДА", link: "", className: `${style.navBarBtn6}`},
     {text: "ПОДДЕРЖАТЬ ПРОЕКТ", link: "", className: `${style.navBarBtn7}`}
 ]
+
 export const NavBar = () => {
+
     return (
         <nav>
             <ul className={style.buttonContainer}>

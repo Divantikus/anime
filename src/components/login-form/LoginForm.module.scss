@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+.flexContainer {
+  font-family: "Poppins";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("public/login-img/community_image_1419271843.png"),
+    no-repeat;
+  background-size: cover;
+}
+.form {
+  color: white;
+  max-width: 400px;
+  border: 1px solid white;
+  padding: 30px 40px;
+  border-radius: 40px;
+  backdrop-filter: blur(15px);
+}
+.title {
+  text-align: center;
+  margin: 0 0 25px 0;
+  font-size: 30px;
+  font-weight: 600;
+}
+.lable {
+  display: block;
+  margin: 0 0 10px 0;
+}
+.link {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin: 0 0 10px 0;
+  transition: 0.3s;
+  &:hover {
+    color: orange;
+    text-decoration: underline;
+  }
+}
+
+.submitBtn {
+  width: 100%;
+  border-radius: 30px;
+  padding: 10px 0;
+  background: white;
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: orange;
+  }
+  &:disabled {
+    display: none;
+  }
+}
+.mainRegForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins";
+  height: 100vh;
+  background: url("public/registration-img/reg-bg.jpg");
+  background-size: cover;
+}

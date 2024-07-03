@@ -2,28 +2,40 @@ export interface NewsData {
     id: number,
     title: string,
     url: string,
-    image: string
+    image_data: string
 }
-export interface shortDescriptionAnime{
+export interface ShortDescriptionAnime {
     id: number,
     title: string,
-    image: string,
+    image_data: string,
     description: string,
     episodes_number: number,
 }
-export interface schedule {
-    fri: shortDescriptionAnime[],
-    mon: shortDescriptionAnime[],
-    sat: shortDescriptionAnime[],
-    sun: shortDescriptionAnime[],
-    thu: shortDescriptionAnime[],
-    tue: shortDescriptionAnime[],
-    wed: shortDescriptionAnime[],
+export interface Schedule {
+    fri: ShortDescriptionAnime[],
+    mon: ShortDescriptionAnime[],
+    sat: ShortDescriptionAnime[],
+    sun: ShortDescriptionAnime[],
+    thu: ShortDescriptionAnime[],
+    tue: ShortDescriptionAnime[],
+    wed: ShortDescriptionAnime[],
 }
+
+export type Season = ["winter"?, "summer"?, "autumn"?, "spring"?] | null
+
 export interface FilteringOptions {
     genres: string[] | null,
-    year: number | null,
-    season: "winter" | "summer" | "autumn" | "spring" | null,
+    year: number[] | null,
+    season: Season,
     popular_or_new: "popular" | "new" | null,
     is_completed: true | null
+}
+export interface FullDescriptionAnime extends ShortDescriptionAnime{
+    season: string,
+    status: string,
+    genres: string[],
+    voices: string[],
+    timings: string[],
+    subtitles: string[]
+    favorites_count: number,
 }

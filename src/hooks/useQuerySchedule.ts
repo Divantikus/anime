@@ -4,9 +4,10 @@ import {getDataService} from "src/services/getDataFromServer.ts";
 export const useQuerySchedule = () => {
   return useQuery({
       queryKey: ["getDataSchedule"],
-      queryFn: async () => {
-          return await getDataService.getDataSchedule()
+      queryFn: () => {
+          return getDataService.getDataSchedule()
       },
-      select: (data) => data?.data
+      select: (data) => data?.data,
+
   })
 }

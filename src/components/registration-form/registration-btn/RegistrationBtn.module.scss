@@ -1,0 +1,16 @@
+.submitBtn {
+  width: 100%;
+  border-radius: 30px;
+  padding: 10px 0;
+  background: white;
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: orange;
+  }
+  &:disabled {
+    display: none;
+  }
+}

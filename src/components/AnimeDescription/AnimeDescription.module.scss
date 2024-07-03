@@ -1,0 +1,23 @@
+.title{
+  color: #d83541;
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+  border-bottom: 2px solid #D3D3D3;
+  text-align: center;
+}
+.wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 5px 0;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+  border-bottom: 2px solid #D3D3D3;
+}
+.boldText{
+  font-weight: 700;
+}
+.text{
+  line-height: 1.42857143;
+}
