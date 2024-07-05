@@ -37,10 +37,5 @@ class getDataFromServer {
         return  await axios.get<FullDescriptionAnime>(this.releaseURL + "watch/" + id)
     }
 
-    // async getVideo(){
-    //     const a = await axios.get('http://localhost:8000/release/watch/1/0')
-    //     console.log(a)
-    //     return a
-    // }
 }
 export const getDataService = new getDataFromServer()

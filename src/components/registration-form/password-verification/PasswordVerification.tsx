@@ -1,15 +1,19 @@
 import { useFormContext } from "react-hook-form";
-import { useState } from "react";
 import { IRegistration } from "../RegistTypes";
-import passwordIcon from "../../../../../anime/public/login-img/password-icon.svg";
+import { useState } from "react";
+import passwordIcon from "public/login-img/password-lock.svg";
 import style from "src/components/login-form/input-fields/InputStyles.module.scss";
+
 export const PasswordVerification = () => {
+
   const {
     formState: { errors },
     register,
     getValues,
   } = useFormContext<IRegistration>();
-  const [passwordIsVisible, setasswordIsVisible] = useState(false);
+
+  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
+
   return (
     <>
       <label htmlFor="userPassword" className={style.lable}>
@@ -37,7 +41,7 @@ export const PasswordVerification = () => {
         />
         <button
           className={style.showPasswordBtn}
-          onClick={() => setasswordIsVisible(!passwordIsVisible)}
+          onClick={() => setPasswordIsVisible(!passwordIsVisible)}
         >
           <img src={passwordIcon} alt="password icon" className={style.img} />
         </button>

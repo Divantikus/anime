@@ -1,7 +1,7 @@
 import { settingsPassword } from "../../LoginVar";
 import { useFormContext } from "react-hook-form";
 import { FC, useState } from "react";
-import passwordIcon from "public/login-img/password-icon.svg";
+import passwordIcon from "public/login-img/password-lock.svg";
 import style from "../InputStyles.module.scss";
 
 export const InputPassword: FC = () => {

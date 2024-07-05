@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { InputEmail } from "../login-form/input-fields/input-email/InputEmail";
-import {useMyFormProv} from "src/hooks/useMyFormProv.ts";
 import { FormProvider } from "react-hook-form";
 import { IRegistration } from "./RegistTypes";
+import { useMyFormProv } from "src/hooks/useMyFormProv.ts";
 import { InputPassword } from "../login-form/input-fields/input-password/InputPassword";
 import { RegistrationBtn } from "./registration-btn/RegistrationBtn";
 import { PasswordVerification } from "./password-verification/PasswordVerification";
