@@ -13,8 +13,12 @@ import ds from 'public/watch/ds.jpg'
 export const WatchPage = () => {
 
     const {id} = useParams()
+    const getId = () => {
+      return id ? +id : NaN
+    }
     const video = useRef<HTMLVideoElement>(null)
-    const {data, isLoading, isError} = useQueryWatch(id ? +id : NaN)
+    const {data, isLoading, isError} = useQueryWatch(getId)
+
 
     if(data === "incorrect data" || isError || !data){
         return <div>Error (</div>

@@ -1,4 +1,5 @@
 import {useQuerySideBar} from "src/hooks/useQuerySideBar.ts";
+import {useQueryClient} from "react-query";
 import {Loading} from "src/load/Loading.tsx";
 import {Card} from "src/components/Card/Card.tsx";
 import {Link} from "react-router-dom";
@@ -9,6 +10,7 @@ const cardStyles = {fontSize: {title: 15, episode: 14, description: 13}, border:
 export const Sidebar = () => {
 
     const {data: lastUploaded, isLoading, isError} = useQuerySideBar()
+    const client = useQueryClient()
 
     if(isLoading){
         return <aside className={style.sideBar}>
@@ -16,7 +18,7 @@ export const Sidebar = () => {
         </aside>
     }
 
-    if(isError){
+    if(isError || !lastUploaded){
         return <div>Error (</div>
     }
 
@@ -26,9 +28,14 @@ export const Sidebar = () => {
               <input placeholder="Найти аниме по названию" className={style.input} type="text"/>
           </div>
           {
-              lastUploaded?.map(titleInfo => {
+              lastUploaded.map(titleInfo => {
                   return (
-                      <Link to={`/watch/${titleInfo.id}`} style={{display: "inline-block"}} key={titleInfo.id}>
+                      <Link
+                          to={`/watch/${titleInfo.id}`}
+                          style={{display: "inline-block"}}
+                          key={titleInfo.id}
+                          onClick={() => client.refetchQueries(["getFullDataAboutTitle"])}
+                      >
                           <Card styles={cardStyles} info={titleInfo}/>
                       </Link>
                   )

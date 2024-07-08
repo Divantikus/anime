@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     FilteringOptions, FullDescriptionAnime,
-    NewsData,
+    NewsData, ReleasesData,
     Schedule,
     ShortDescriptionAnime
 } from "src/services/types/DataFromServerTypes.ts";
@@ -26,7 +26,7 @@ class getDataFromServer {
     }
 
     async getFilteredAnime(options: FilteringOptions){
-            const data = await axios.get<ShortDescriptionAnime[]>(this.releaseURL + "filter?data=" + JSON.stringify(options))
+            const data = await axios.get<ReleasesData>(this.releaseURL + "filter?data=" + JSON.stringify(options))
             return data.data
     }
 

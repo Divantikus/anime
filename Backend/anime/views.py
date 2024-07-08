@@ -1,18 +1,24 @@
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.status import HTTP_404_NOT_FOUND
 
-from app.settings import MEDIA_ROOT
+from app.settings import MEDIA_ROOT, BASE_DIR
+from .models.episode_model import Episode
 
 from .models.anime_model import Anime
 from my_toos.image_data import get_image_data
 
 from urllib.parse import unquote
+from wsgiref.util import FileWrapper
 from mimetypes import guess_type
 
+from math import ceil
 import json
 import os
 import re
@@ -22,7 +28,7 @@ class ReleaseView(APIView):
     @staticmethod
     def get(request, page_number=1):
         anime_by_popularity = Anime.objects.all().order_by('-favorites_count')
-        output = [
+        anime_list = [
             {
                 'id': anime.id,
                 'title': anime.title,
@@ -31,11 +37,14 @@ class ReleaseView(APIView):
                 'image_data': get_image_data(Anime, anime.id),
             } for anime in anime_by_popularity
         ]
-
-        paginator = Paginator(output, 12)
+        paginator = Paginator(anime_list, 12)
         output_page = list(paginator.page(page_number))
 
-        return Response(output_page)
+        output = {
+            "pages": paginator.num_pages,
+            "anime_list": output_page
+        }
+        return Response(output)
 
 
 class ScheduleView(APIView):
@@ -54,6 +63,7 @@ class ScheduleView(APIView):
                 for anime in Anime.objects.filter(new_episode_every=day)
             ] for day in weekdays
         }
+
         return Response(output)
 
 
@@ -62,9 +72,9 @@ class FilterView(APIView):
     def get(request, page_number=1):
         # It's supposed that get request is of form
         # localhost: 8000 / release / filter?data = {
-        #     "genres": [string, ...] or null,
-        #     "years": [int, ...] or null,
-        #     "seasons": ["winter", "summer", "autumn", "spring"] or null,
+        #     "genres": [genre1, genre2, ...] or null,
+        #     "year": int or null,
+        #     "season": "winter" or "summer" or "autumn" or "spring" or null,
         #     "popular_or_new": "popular", "new", null,
         #     "is_completed": true or null,  Logic for false is not exist
         # }
@@ -98,10 +108,10 @@ class FilterView(APIView):
                     result.append(anime)
             anime_list = result
 
-        if req_data.get('years', None) is not None:
-            anime_list = [anime for anime in anime_list if anime['year'] in req_data['years']]
-        if req_data.get('seasons', None) is not None:
-            anime_list = [anime for anime in anime_list if anime['season'] in req_data['seasons']]
+        if req_data.get('year', None) is not None:
+            anime_list = [anime for anime in anime_list if anime['year'] == req_data['year']]
+        if req_data.get('season', None) is not None:
+            anime_list = [anime for anime in anime_list if anime['season'] == req_data['season']]
 
         if req_data.get('popular_or_new', None) == 'popular':
             anime_list.sort(key=lambda x: x['favorites_count'], reverse=True)
@@ -121,10 +131,14 @@ class FilterView(APIView):
             } for anime in anime_list
         ]
 
-        paginator = Paginator(anime_list, 9)
+        paginator = Paginator(anime_list, 12)
         output_page = list(paginator.page(page_number))
 
-        return Response(output_page)
+        output = {
+            "pages": paginator.num_pages,
+            "anime_list": output_page
+        }
+        return Response(output)
 
 
 class WatchView(APIView):
@@ -150,10 +164,12 @@ class WatchView(APIView):
 
 
 def watch_episode(request, anime_id: int, episode_number: str):
-    episode_path = os.path.join(MEDIA_ROOT, f"{anime_id}/{episode_number}.mp4")
+    episode = Episode.objects.get(anime_id=anime_id, episode_number=episode_number)
+
+    episode_path = episode.video.path
 
     if not os.path.exists(episode_path):
-        return Http404("File not found")
+        return Response({"error": 1}, status=HTTP_404_NOT_FOUND)
 
     size = os.path.getsize(episode_path)
     content_type, content_encoding = guess_type(episode_path)
@@ -161,27 +177,25 @@ def watch_episode(request, anime_id: int, episode_number: str):
     range_header = request.headers.get("Range", "").strip()
     range_match = re.match(r'bytes=([0-9]+)-([0-9]*)', range_header)
 
-    response = HttpResponse(content_type=content_type)
-    response['Accept-Ranges'] = 'bytes'
-
     if range_match:
         first_byte, last_byte = range_match.groups()
         first_byte = int(first_byte) if first_byte else 0
         last_byte = int(last_byte) if last_byte else size - 1
 
-        if last_byte >= size:
+        if last_byte > size:
             last_byte = size - 1
-
-        response.status_code = 206
-        response['Content-Range'] = f'bytes {first_byte}-{last_byte}/{size}'
-        response['Content-Length'] = str(last_byte - first_byte + 1)
 
         with open(episode_path, 'rb') as episode_file:
             episode_file.seek(first_byte)
-            response.content = episode_file.read(last_byte - first_byte + 1)
+            content_length = last_byte - first_byte + 1
+            wrapper = FileWrapper(episode_file, blksize=16384)
+            response = HttpResponse(wrapper, content_type=content_type)
+            response['Content-Length'] = str(content_length)
+            response['Content-Range'] = f'bytes {first_byte}-{last_byte}/{size}'
+            response['Accept-Ranges'] = 'bytes'
     else:
+        response = HttpResponse(open(episode_path, 'rb'), content_type=content_type)
         response['Content-Length'] = str(size)
-        with open(episode_path, 'rb') as episode_file:
-            response.content = episode_file.read()
+        response['Accept-Ranges'] = 'bytes'
 
     return response

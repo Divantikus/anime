@@ -1,7 +1,6 @@
 from django.urls import path
 from .views import ReleaseView, ScheduleView, FilterView, WatchView, watch_episode
 
-
 urlpatterns = [
     path('', ReleaseView.as_view(), name='releases'),
     path('<int:page_number>/', ReleaseView.as_view(), name='releases'),

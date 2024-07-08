@@ -1,6 +1,10 @@
 .DS_Store
 .idea
 __pycache__
+secret.py
+media.zip
+tempo.py
+test.rest
 
 db.sqlite3
 media

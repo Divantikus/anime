@@ -39,3 +39,7 @@ export interface FullDescriptionAnime extends ShortDescriptionAnime{
     subtitles: string[]
     favorites_count: number,
 }
+export interface ReleasesData{
+    pages: number,
+    anime_list: ShortDescriptionAnime[],
+}
