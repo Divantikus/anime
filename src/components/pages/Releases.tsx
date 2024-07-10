@@ -16,7 +16,7 @@ export const Releases = () => {
     useEffect(() => {
         mutate({choiceGenres: [], chooseSeason: [], isNew: false, releaseIsOver: false, chooseYear: []})
     }, []);
-    console.log(isError)
+
     return (
         <div className={style.some}>
             <SearchForm mutate={mutate}/>

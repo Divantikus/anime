@@ -6,8 +6,8 @@ const footerLinks: IFooterLink[] = [
     {text: "Правила", link: ""},
     {text: "Вопрос", link: ""},
     {text: "Личный кабинет", link: ""},
-    {text: "Регистрация", link: ""},
-    {text: "Вход", link: ""},
+    {text: "Регистрация", link: "/registration"},
+    {text: "Вход", link: "/login"},
 ]
 export const FooterLinks = () => {
     return (
