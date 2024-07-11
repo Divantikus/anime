@@ -21,7 +21,7 @@ export const Sidebar = () => {
     if(isError || !lastUploaded){
         return <div>Error (</div>
     }
-
+    // redirection
     return (
       <aside className={style.sideBar}>
           <div className={style.inputContainer}>
@@ -31,9 +31,9 @@ export const Sidebar = () => {
               lastUploaded.map(titleInfo => {
                   return (
                       <Link
+                          key={titleInfo.id}
                           to={`/watch/${titleInfo.id}`}
                           style={{display: "inline-block"}}
-                          key={titleInfo.id}
                           onClick={() => client.refetchQueries(["getFullDataAboutTitle"])}
                       >
                           <Card styles={cardStyles} info={titleInfo}/>
