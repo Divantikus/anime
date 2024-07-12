@@ -1,13 +1,16 @@
-import {useMutation} from "react-query";
-import {DataFromForm} from "src/components/search-form-by-parameters/SearchFormTypes.ts";
 import {FilteringOptions, Season} from "src/services/types/DataFromServerTypes.ts";
 import {getDataService} from "src/services/getDataFromServer.ts";
+import {DataFromForm} from "src/components/search-form-by-parameters/SearchFormTypes.ts";
+import {useMutation} from "react-query";
 
-export const useMutationReleases = <mutationType extends DataFromForm>() => {
+export const useMutationReleases = () => {
 
     return useMutation({
         mutationKey: ["getFilterData"],
-        mutationFn: (mutationData: mutationType) => {
+        mutationFn: ({mutationData, page}: {mutationData :DataFromForm | null, page: number }) => {
+
+
+            if (!mutationData) return getDataService.getFilteredAnime(null, page)
 
             const data = {} as FilteringOptions
 
@@ -25,8 +28,7 @@ export const useMutationReleases = <mutationType extends DataFromForm>() => {
 
             data.is_completed = mutationData.releaseIsOver ? true : null
             data.popular_or_new = mutationData.isNew ? "new" : "popular"
-
-            return getDataService.getFilteredAnime(data)
+            return getDataService.getFilteredAnime(data, page)
         },
     })
 }

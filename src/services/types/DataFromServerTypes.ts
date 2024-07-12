@@ -21,15 +21,16 @@ export interface Schedule {
     wed: ShortDescriptionAnime[],
 }
 
-export type Season = ["winter"?, "summer"?, "autumn"?, "spring"?] | null
+export type Season = ["winter"?, "summer"?, "autumn"?, "spring"?]
 
 export interface FilteringOptions {
-    genres: string[] | null,
-    year: number[] | null,
+    genres: string[],
+    year: number[],
     season: Season,
-    popular_or_new: "popular" | "new" | null,
+    popular_or_new: "popular" | "new",
     is_completed: true | null
 }
+
 export interface FullDescriptionAnime extends ShortDescriptionAnime{
     season: string,
     status: string,
@@ -39,6 +40,7 @@ export interface FullDescriptionAnime extends ShortDescriptionAnime{
     subtitles: string[]
     favorites_count: number,
 }
+
 export interface ReleasesData{
     pages: number,
     anime_list: ShortDescriptionAnime[],

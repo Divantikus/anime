@@ -4,6 +4,8 @@ import {
     selectStyles,
     selectYear
 } from "src/components/search-form-by-parameters/SearchFormVar.ts";
+import {Dispatch, FC, SetStateAction} from "react";
+import {UseMutateFunction} from "react-query";
 import {OrdinaryCheckbox} from "src/components/ordinary-checkbox/OrdinaryCheckbox.tsx";
 import {CustomCheckbox} from "src/components/custom-checkbox/CustomCheckbox.tsx";
 import {useMyFormProv} from "src/hooks/useMyFormProv.ts";
@@ -11,24 +13,26 @@ import {CustomSelect} from "src/components/select/CustomSelect.tsx";
 import {DataFromForm} from "src/components/search-form-by-parameters/SearchFormTypes.ts";
 import {FormProvider} from "react-hook-form";
 import {Link} from "react-router-dom";
-import {FC} from "react";
 import style from './SearchForm.module.scss'
+import {ReleasesData} from "src/services/types/DataFromServerTypes.ts";
 
 interface SearchFormProps{
-    mutate: (arg: DataFromForm) => any
+    mutate: UseMutateFunction<ReleasesData, unknown, {     mutationData: DataFromForm | null;     page: number; }, unknown>
+    page: number,
+    resetPage: Dispatch<SetStateAction<number>>
 }
 
-export const SearchForm: FC<SearchFormProps> = ({mutate}) => {
+export const SearchForm: FC<SearchFormProps> = ({mutate, page, resetPage}) => {
 
     const {methods, handleSubmit} = useMyFormProv<DataFromForm>()
 
     const submitFn = (e: DataFromForm) => {
-        mutate(e)
+        mutate({mutationData: e, page: page})
     }
 
     return (
         <FormProvider {...methods}>
-            <form className={style.form} onSubmit={handleSubmit(submitFn)}>
+            <form className={style.form} onSubmit={handleSubmit(submitFn)} id="tryForm">
                 <div className={style.firstLine}>
                     <div style={{width: 390}}>
                         <CustomSelect
@@ -56,7 +60,7 @@ export const SearchForm: FC<SearchFormProps> = ({mutate}) => {
                     </div>
                 </div>
                 <div className={style.secondLine}>
-                    <button className={style.button}>Показать</button>
+                    <button onClick={() => {resetPage(1)}} className={style.button}>Показать</button>
                     <CustomCheckbox leftSideText={"Новое"} rightSideText={"Популярное"} checkName={"isNew"}/>
                     <OrdinaryCheckbox checkName={"releaseIsOver"}/>
                     <Link to={'/'} className={style.link}>АЛФАВИТНЫЙ УКАЗАТЕЛЬ</Link>

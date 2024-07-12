@@ -25,9 +25,15 @@ class getDataFromServer {
         return await axios.get<ShortDescriptionAnime[]>(this.baseURL + "side_panel")
     }
 
-    async getFilteredAnime(options: FilteringOptions){
-            const data = await axios.get<ReleasesData>(this.releaseURL + "filter?data=" + JSON.stringify(options))
+    async getFilteredAnime(options: FilteringOptions | null, page: number){
+
+        if(!options) {
+            const data = await axios.get<ReleasesData>(this.releaseURL + `filter/${page}`)
             return data.data
+        }
+
+        const data = await axios.get<ReleasesData>(this.releaseURL + `filter/${page}?data=` + JSON.stringify(options))
+        return data.data
     }
 
     async getTitle(id: number){

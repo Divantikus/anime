@@ -7,12 +7,13 @@ export interface SeasonOptions extends Options{
     value: "winter" | "summer" | "autumn" | "spring"
 }
 
-export interface DataFromForm{
+export type DataFromForm = {
     choiceGenres: Options[]
     chooseSeason: SeasonOptions[],
     chooseYear: Options[],
     releaseIsOver: boolean,
     isNew: boolean,
+    page: number,
 }
 
 
