@@ -36,3 +36,21 @@
   position: absolute;
   transition: 0.3s;
 }
+.episodes{
+  gap: 5px;
+  padding: 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.episodeBtn{
+  border: none;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: #da2e2e;
+  cursor: pointer;
+  &:hover{
+    background: #a81717;
+  }
+}

@@ -1,7 +1,17 @@
+.relContainer{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .titles{
   display: flex;
   padding-top: 20px;
+  align-items: start;
   flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px 0;
+  gap: 17px 20px;
+  margin-bottom: auto;
+}
+
+.link{
+  height: 390px;
 }
