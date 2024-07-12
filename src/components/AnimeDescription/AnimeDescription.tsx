@@ -5,6 +5,9 @@ import style from "./AnimeDescription.module.scss"
 export const AnimeDescription: FC<AnimeDescriptionProps> = ({description}) => {
 
     const createString: TCreateString = (arr) => {
+
+        if (!arr.length) return ""
+
         return arr.reduce((acc, genre) => {
             return acc + ", " + genre
         })
