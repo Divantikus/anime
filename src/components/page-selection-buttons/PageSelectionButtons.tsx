@@ -32,7 +32,6 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     setCurrentPage(currentPage - 3);
                 }}
             >
-                {' '}
                 {currentPage - 3}
             </button>
             <button
@@ -45,7 +44,6 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     setCurrentPage(currentPage - 2);
                 }}
             >
-                {' '}
                 {currentPage - 2}
             </button>
             <button
@@ -58,7 +56,6 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     setCurrentPage(currentPage - 1);
                 }}
             >
-                {' '}
                 {currentPage - 1}
             </button>
             {currentPage && (
@@ -80,7 +77,6 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     setCurrentPage(currentPage + 1);
                 }}
             >
-                {' '}
                 {currentPage + 1}
             </button>
             <button
@@ -94,7 +90,6 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     setCurrentPage(currentPage + 2);
                 }}
             >
-                {' '}
                 {currentPage + 2}
             </button>
             <button
@@ -108,7 +103,6 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     setCurrentPage(currentPage + 3);
                 }}
             >
-                {' '}
                 {currentPage + 3}
             </button>
             <button

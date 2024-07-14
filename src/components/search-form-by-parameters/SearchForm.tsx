@@ -4,28 +4,18 @@ import {
     selectStyles,
     selectYear,
 } from 'src/components/search-form-by-parameters/SearchFormVar.ts';
-import { Dispatch, FC, SetStateAction } from 'react';
-import { UseMutateFunction } from 'react-query';
+import {
+    DataFromForm,
+    SearchFormProps,
+} from 'src/components/search-form-by-parameters/SearchFormTypes.ts';
 import { OrdinaryCheckbox } from 'src/components/ordinary-checkbox/OrdinaryCheckbox.tsx';
 import { CustomCheckbox } from 'src/components/custom-checkbox/CustomCheckbox.tsx';
 import { useMyFormProv } from 'src/hooks/useMyFormProv.ts';
-import { ReleasesData } from 'src/services/types/DataFromServerTypes.ts';
 import { CustomSelect } from 'src/components/select/CustomSelect.tsx';
-import { DataFromForm } from 'src/components/search-form-by-parameters/SearchFormTypes.ts';
 import { FormProvider } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { FC } from 'react';
 import style from './SearchForm.module.scss';
-
-interface SearchFormProps {
-    mutate: UseMutateFunction<
-        ReleasesData,
-        unknown,
-        { mutationData: DataFromForm | null; page: number },
-        unknown
-    >;
-    page: number;
-    resetPage: Dispatch<SetStateAction<number>>;
-}
 
 export const SearchForm: FC<SearchFormProps> = ({
     mutate,
