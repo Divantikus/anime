@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 backend
+Backend
 some.json
 dist-ssr
 *.local
