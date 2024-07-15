@@ -1,22 +1,44 @@
-import {LoginData} from "src/services/types/authDataTypes.ts";
-import axios from "axios";
+import {
+    LoginData,
+    RegistrationData,
+} from 'src/services/types/authDataTypes.ts';
+import axios from 'axios';
 
 class Auth {
+    private baseURL = 'http://localhost:8000/user/';
 
-    private baseURL = "localhost:8000/auth/";
-
-    async login(options: LoginData){
-        const data = await axios.post(this.baseURL + "login", {...options})
-        console.log(data)
-        return data
+    private createFormData<T>(data: T) {
+        const formData = new FormData();
+        for (const key in data) {
+            // @ts-ignore
+            formData.append(key, data[key]);
+        }
+        return formData;
     }
 
-    async registration(options: LoginData){
-        const data = await axios.post(this.baseURL + "register", {...options})
-        console.log(data)
-        return data
+    async login(options: LoginData) {
+        const data = await axios.postForm(
+            this.baseURL + 'login/',
+            this.createFormData<LoginData>(options)
+        );
+        console.log(data);
+        return data;
+    }
+
+    async getProfile() {
+        const data = await axios.get('http://localhost:8000/user/some/');
+        console.log(data);
+        return data;
+    }
+
+    async registration(options: RegistrationData) {
+        const data = await axios.postForm(
+            this.baseURL + 'signup/',
+            this.createFormData<RegistrationData>(options)
+        );
+        console.log(data);
+        return data;
     }
 }
 
-
-export const authServices = new Auth()
+export const authServices = new Auth();

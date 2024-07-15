@@ -1,6 +1,7 @@
 export type IRegistration = {
-  username: string;
-  password: string;
-  passwordConfirmation: string;
-  approval: boolean;
+    username: string;
+    password: string;
+    email: string;
+    passwordConfirmation: string;
+    approval: boolean;
 };
