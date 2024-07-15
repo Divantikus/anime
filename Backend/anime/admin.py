@@ -8,6 +8,7 @@ class AnimeAdmin(admin.ModelAdmin):
     search_fields = ('title', 'title_latin',)
     exclude = ('updated_at',)
     filter_horizontal = ('genres', 'voices', 'timing', 'subtitles')
+    prepopulated_fields = {'slug': ('title_latin',)}
 
 
 @admin.register(Genre)

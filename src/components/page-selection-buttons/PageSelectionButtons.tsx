@@ -9,7 +9,6 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
 }) => {
     return (
         <div className={style.buttonContainer}>
-            button
             <button
                 form="tryForm"
                 onClick={() => {

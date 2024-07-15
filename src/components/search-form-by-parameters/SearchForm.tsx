@@ -24,8 +24,8 @@ export const SearchForm: FC<SearchFormProps> = ({
 }) => {
     const { methods, handleSubmit } = useMyFormProv<DataFromForm>();
 
-    const submitFn = (e: DataFromForm) => {
-        mutate({ mutationData: e, page: page });
+    const submitFn = (formData: DataFromForm) => {
+        mutate({ mutationData: formData, page: page });
     };
 
     return (
