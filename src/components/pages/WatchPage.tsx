@@ -1,14 +1,11 @@
 import { AnimeDescription } from 'src/components/AnimeDescription/AnimeDescription.tsx';
 import { useRef, useState } from 'react';
-import { decodingJpgImg } from 'src/components/pages/MainPage.tsx';
+import { SocialNetworks } from 'src/components/social-networks/SocialNetworks.tsx';
 import { createButtons } from 'src/functions/createButtons.tsx';
 import { useQueryWatch } from 'src/hooks/useQueryWatch.ts';
 import { useParams } from 'react-router-dom';
 import { Loading } from 'src/load/Loading.tsx';
 import style from './styles/WatchPage.module.scss';
-import vk from 'public/watch/vk.jpg';
-import tg from 'public/watch/tg.jpg';
-import ds from 'public/watch/ds.jpg';
 
 export const WatchPage = () => {
     const { id } = useParams();
@@ -24,13 +21,15 @@ export const WatchPage = () => {
         return <Loading height={15} />;
     }
 
+    console.log(data);
+
     return (
         <section>
             <div className={style.watch}>
                 <div className={style.wrap}>
                     <AnimeDescription description={data} />
                     <img
-                        src={decodingJpgImg + data.image_data}
+                        src={data.image_data}
                         alt={data.title}
                         className={style.img}
                     />
@@ -51,17 +50,7 @@ export const WatchPage = () => {
             <div className={style.episodes}>
                 {createButtons(data.episodes_number, setCurrentEpisode)}
             </div>
-            <div className={style.socialNetwork}>
-                <a href="#" className={style.link}>
-                    <img src={vk} alt="vk" className={style.networkImg} />
-                </a>
-                <a href="#" className={style.link}>
-                    <img src={tg} alt="tg" className={style.networkImg} />
-                </a>
-                <a href="#" className={style.link}>
-                    <img src={ds} alt="ds" className={style.networkImg} />
-                </a>
-            </div>
+            <SocialNetworks />
         </section>
     );
 };

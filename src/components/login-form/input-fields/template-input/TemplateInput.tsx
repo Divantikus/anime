@@ -2,7 +2,7 @@ import { RegisterOptions, useFormContext } from 'react-hook-form';
 import { FC, HTMLInputTypeAttribute } from 'react';
 import style from '../InputStyles.module.scss';
 
-interface TemplateInputReg {
+export interface TemplateInputReg {
     username: string;
     password: string;
     email: string;

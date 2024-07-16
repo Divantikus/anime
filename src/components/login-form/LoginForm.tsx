@@ -2,13 +2,13 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { LoginData } from 'src/services/types/authDataTypes.ts';
 import { SubmitBtn } from './submit-btn/SubmitBtn';
-import { useMyFormProv } from 'src/hooks/useMyFormProv.ts';
+import { usernameSett } from 'src/components/registration-form/RegistrationVar.ts';
 import { FormProvider } from 'react-hook-form';
 import { InputPassword } from './input-fields/input-password/InputPassword';
+import { useMyFormProv } from 'src/hooks/useMyFormProv.ts';
+import { TemplateInput } from 'src/components/login-form/input-fields/template-input/TemplateInput.tsx';
 import { useLoginMutation } from 'src/hooks/useLoginMutation.ts';
 import style from './LoginForm.module.scss';
-import { TemplateInput } from 'src/components/login-form/input-fields/template-input/TemplateInput.tsx';
-import { usernameSett } from 'src/components/registration-form/Registration.tsx';
 
 export const LoginForm: FC = () => {
     const {

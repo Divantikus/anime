@@ -2,7 +2,7 @@ import { useNewsData } from 'src/hooks/useNewsData.ts';
 import { Loading } from 'src/load/Loading.tsx';
 import style from './styles/MainPage.module.scss';
 
-export const decodingJpgImg = 'data:image/jpg;base64,';
+// export const decodingJpgImg = 'data:image/jpg;base64,';
 
 export const MainPage = () => {
     const { data: axiosRes, isLoading } = useNewsData();
@@ -23,7 +23,7 @@ export const MainPage = () => {
                         className={style.link}
                     >
                         <img
-                            src={decodingJpgImg + title.image_data}
+                            src={title.image_data}
                             alt={title.title}
                             className={style.bg}
                         />

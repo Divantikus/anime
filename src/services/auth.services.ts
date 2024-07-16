@@ -7,37 +7,26 @@ import axios from 'axios';
 class Auth {
     private baseURL = 'http://localhost:8000/user/';
 
-    private createFormData<T>(data: T) {
+    private createFormData(data: LoginData | RegistrationData) {
         const formData = new FormData();
         for (const key in data) {
-            // @ts-ignore
             formData.append(key, data[key]);
         }
         return formData;
     }
 
     async login(options: LoginData) {
-        const data = await axios.postForm(
+        return await axios.postForm(
             this.baseURL + 'login/',
-            this.createFormData<LoginData>(options)
+            this.createFormData(options)
         );
-        console.log(data);
-        return data;
-    }
-
-    async getProfile() {
-        const data = await axios.get('http://localhost:8000/user/some/');
-        console.log(data);
-        return data;
     }
 
     async registration(options: RegistrationData) {
-        const data = await axios.postForm(
+        return await axios.postForm(
             this.baseURL + 'signup/',
-            this.createFormData<RegistrationData>(options)
+            this.createFormData(options)
         );
-        console.log(data);
-        return data;
     }
 }
 

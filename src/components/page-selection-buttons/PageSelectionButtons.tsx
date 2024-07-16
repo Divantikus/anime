@@ -12,6 +12,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
             <button
                 form="tryForm"
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage - 1);
                 }}
                 className={style.button}
@@ -28,6 +29,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     display: currentPage - 3 > 0 ? 'inline-block' : 'none',
                 }}
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage - 3);
                 }}
             >
@@ -40,6 +42,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     display: currentPage - 2 > 0 ? 'inline-block' : 'none',
                 }}
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage - 2);
                 }}
             >
@@ -52,6 +55,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                     display: currentPage - 1 > 0 ? 'inline-block' : 'none',
                 }}
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage - 1);
                 }}
             >
@@ -73,6 +77,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                         currentPage + 1 <= data.pages ? 'inline-block' : 'none',
                 }}
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage + 1);
                 }}
             >
@@ -86,6 +91,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                         currentPage + 2 <= data.pages ? 'inline-block' : 'none',
                 }}
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage + 2);
                 }}
             >
@@ -99,6 +105,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
                         currentPage + 3 <= data.pages ? 'inline-block' : 'none',
                 }}
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage + 3);
                 }}
             >
@@ -107,6 +114,7 @@ export const PageSelectionButtons: FC<PageSelectionButtonsProps> = ({
             <button
                 form="tryForm"
                 onClick={() => {
+                    window.scroll(0, 0);
                     setCurrentPage(currentPage + 1);
                 }}
                 className={style.button}
