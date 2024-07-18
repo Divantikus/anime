@@ -40,6 +40,7 @@ export const Releases = () => {
                                     to={`/watch/${title.id}`}
                                     key={title.id}
                                     className={style.link}
+                                    onClick={() => window.scroll(0, 0)}
                                 >
                                     <Card styles={styles} info={title} />
                                 </Link>

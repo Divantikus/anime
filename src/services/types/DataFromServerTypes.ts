@@ -39,9 +39,21 @@ export interface FullDescriptionAnime extends ShortDescriptionAnime {
     timings: string[];
     subtitles: string[];
     favorites_count: number;
+    episode_url: string | null;
+    episode_number: number;
 }
 
 export interface ReleasesData {
     pages: number;
     anime_list: ShortDescriptionAnime[];
+}
+
+export interface OptionsForGettingVideo {
+    episode: number;
+    id: number;
+}
+
+export interface VideoData {
+    episode_url: string;
+    content_type: string;
 }

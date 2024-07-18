@@ -1,17 +1,25 @@
+import Select, { SingleValue, StylesConfig } from 'react-select';
+import { useMutationVideo } from 'src/hooks/useMutationVideo.ts';
 import { AnimeDescription } from 'src/components/AnimeDescription/AnimeDescription.tsx';
-import { useRef, useState } from 'react';
 import { SocialNetworks } from 'src/components/social-networks/SocialNetworks.tsx';
-import { createButtons } from 'src/functions/createButtons.tsx';
+import { VideoNotFound } from 'src/video-not-found/VideoNotFound.tsx';
 import { useQueryWatch } from 'src/hooks/useQueryWatch.ts';
 import { useParams } from 'react-router-dom';
 import { Loading } from 'src/load/Loading.tsx';
 import style from './styles/WatchPage.module.scss';
+import {
+    createEpisodeButton,
+    SelectOption,
+} from 'src/functions/createEpisodeButton.ts';
 
 export const WatchPage = () => {
     const { id } = useParams();
-    const video = useRef<HTMLVideoElement>(null);
     const { data, isLoading, isError } = useQueryWatch(id ? +id : NaN);
-    const [currentEpisode, setCurrentEpisode] = useState<number | null>(null);
+    const {
+        data: videoData,
+        mutate,
+        isLoading: videoIsLoading,
+    } = useMutationVideo();
 
     if (data === 'incorrect data' || isError || !data) {
         return <div>Error (</div>;
@@ -21,7 +29,49 @@ export const WatchPage = () => {
         return <Loading height={15} />;
     }
 
-    console.log(data);
+    const changeVideo = (changeVideoEvent: SingleValue<SelectOption>) => {
+        if (!changeVideoEvent) return;
+        mutate({ episode: +changeVideoEvent.value, id: data.id });
+    };
+
+    const selectEpisodeStyle: StylesConfig = {
+        container: (styles) => ({
+            ...styles,
+            position: 'absolute',
+            zIndex: 100,
+        }),
+        input: (styles) => ({
+            ...styles,
+            color: '#ffffff',
+        }),
+        singleValue: (styles) => ({
+            ...styles,
+            color: '#ffffff',
+        }),
+        indicatorSeparator: (styles) => ({
+            ...styles,
+            backgroundColor: 'transparent',
+        }),
+        control: (styles) => ({
+            ...styles,
+            backgroundColor: '#252525',
+            border: '1px solid black',
+            color: '#fff',
+        }),
+        menuList: (styles) => ({
+            ...styles,
+            backgroundColor: '#252525',
+            color: '#ffffff',
+            scrollbarWidth: 'auto',
+        }),
+        option: (styles, { isFocused, isSelected }) => ({
+            ...styles,
+            backgroundColor:
+                (isFocused && '#5e5e5e') ||
+                (isSelected && '#5e5e5e') ||
+                styles.backgroundColor,
+        }),
+    };
 
     return (
         <section>
@@ -29,26 +79,31 @@ export const WatchPage = () => {
                 <div className={style.wrap}>
                     <AnimeDescription description={data} />
                     <img
-                        src={data.image_data}
                         alt={data.title}
                         className={style.img}
+                        src={data.image_data}
                     />
                 </div>
-                {currentEpisode && (
-                    <video
-                        ref={video}
-                        controls={true}
-                        style={{ width: '100%', height: 500 }}
-                    >
-                        <source
-                            src={`http://localhost:8000/release/watch/${id}/${currentEpisode}`}
-                            style={{ width: '100%', height: 500 }}
-                        />
-                    </video>
-                )}
-            </div>
-            <div className={style.episodes}>
-                {createButtons(data.episodes_number, setCurrentEpisode)}
+                <div className={style.videoContainer}>
+                    <Select
+                        onChange={changeVideo}
+                        styles={selectEpisodeStyle}
+                        placeholder={'Эпизод не выбран'}
+                        defaultValue={`Серия ${data.episode_number}`}
+                        options={createEpisodeButton(data.episodes_number)}
+                    />
+                    {data.episode_url && (
+                        <video controls={true} className={style.video}>
+                            <source
+                                className={style.videotttt}
+                                src={videoData?.episode_url || data.episode_url}
+                                type={videoData?.content_type}
+                                style={{ width: '100%', height: 500 }}
+                            />
+                        </video>
+                    )}
+                </div>
+                {!data.episode_url && !videoIsLoading && <VideoNotFound />}
             </div>
             <SocialNetworks />
         </section>
