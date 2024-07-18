@@ -1,40 +1,40 @@
-import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
-import style from 'src/components/pages/styles/WatchPage.module.scss';
+import { selectEpisodeStyles } from 'src/components/episode-buttons/selectEpisodeStyles.ts';
+import Select, { SingleValue } from 'react-select';
+import { UseMutateFunction } from 'react-query';
+import {
+    FullDescriptionAnime,
+    OptionsForGettingVideo,
+    VideoData,
+} from 'src/services/types/DataFromServerTypes.ts';
+import {
+    createEpisodeButton,
+    SelectOption,
+} from 'src/functions/createEpisodeButton.ts';
+import { FC } from 'react';
 
-interface EpisodeButtonsProps {
-    episodes: number;
-    setCurrentEpisode: Dispatch<SetStateAction<number | null>>;
+export interface EpisodeButtonsProps {
+    mutate: UseMutateFunction<VideoData, unknown, OptionsForGettingVideo>;
+    id: number;
+    data: FullDescriptionAnime;
 }
 
-type CreateButtonsT = (
-    episodes: number,
-    setCurrentEpisode: Dispatch<SetStateAction<number | null>>
-) => ReactNode[];
-
 export const EpisodeButtons: FC<EpisodeButtonsProps> = ({
-    episodes,
-    setCurrentEpisode,
+    mutate,
+    id,
+    data,
 }) => {
-    const createButtons: CreateButtonsT = (episodes, setCurrentEpisode) => {
-        const buttons = [];
-        for (
-            let episodeNumber = 1;
-            episodeNumber <= episodes;
-            episodeNumber++
-        ) {
-            buttons.push(
-                <button
-                    key={episodeNumber}
-                    className={style.episodeBtn}
-                    onClick={() => {
-                        setCurrentEpisode(episodeNumber);
-                    }}
-                >
-                    Эпизод {episodeNumber}
-                </button>
-            );
-        }
-        return buttons;
+    const changeVideo = (changeVideoEvent: SingleValue<SelectOption>) => {
+        if (!changeVideoEvent) return;
+        mutate({ episode: +changeVideoEvent.value, id: id });
     };
-    return createButtons(episodes, setCurrentEpisode);
+
+    return (
+        <Select
+            onChange={changeVideo}
+            styles={selectEpisodeStyles}
+            placeholder={'Эпизод не выбран'}
+            defaultValue={`Серия ${data.episode_number}`}
+            options={createEpisodeButton(data.episodes_number)}
+        />
+    );
 };
