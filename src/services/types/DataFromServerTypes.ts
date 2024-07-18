@@ -6,6 +6,7 @@ export interface NewsData {
 }
 export interface ShortDescriptionAnime {
     id: number;
+    slug: string;
     title: string;
     image_data: string;
     description: string;
@@ -57,3 +58,5 @@ export interface VideoData {
     episode_url: string;
     content_type: string;
 }
+
+export type SlugType = string | undefined;

@@ -12,6 +12,5 @@ export const createEpisodeButton: CreateEpisodeButtonType = (episodes) => {
             value: episodeNumber.toString(),
         });
     }
-    console.log(selectOptions);
     return selectOptions;
 };

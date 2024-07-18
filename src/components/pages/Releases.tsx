@@ -37,7 +37,7 @@ export const Releases = () => {
                         {data.anime_list.map((title) => {
                             return (
                                 <Link
-                                    to={`/watch/${title.id}`}
+                                    to={`/watch/${title.slug}`}
                                     key={title.id}
                                     className={style.link}
                                     onClick={() => window.scroll(0, 0)}

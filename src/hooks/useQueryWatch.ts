@@ -1,12 +1,15 @@
-import { useQuery } from 'react-query';
 import { getDataService } from 'src/services/getDataFromServer.ts';
-import { FullDescriptionAnime } from 'src/services/types/DataFromServerTypes.ts';
+import {
+    FullDescriptionAnime,
+    SlugType,
+} from 'src/services/types/DataFromServerTypes.ts';
+import { useQuery } from 'react-query';
 
-export const useQueryWatch = (id: number) => {
+export const useQueryWatch = (slug: SlugType) => {
     return useQuery({
         queryKey: ['getFullDataAboutTitle'],
         queryFn: async () => {
-            return await getDataService.getTitle(id);
+            return await getDataService.getTitle(slug);
         },
         select: (data) => {
             if (data === 'incorrect data') return 'incorrect data';

@@ -26,7 +26,7 @@ export const Sidebar = () => {
     if (isError || !lastUploaded) {
         return <div>Error (</div>;
     }
-    // redirection
+
     return (
         <aside className={style.sideBar}>
             <div className={style.inputContainer}>
@@ -40,7 +40,7 @@ export const Sidebar = () => {
                 return (
                     <Link
                         key={titleInfo.id}
-                        to={`/watch/${titleInfo.id}`}
+                        to={`/watch/${titleInfo.slug}`}
                         style={{ display: 'inline-block' }}
                         onClick={() => window.scroll(0, 0)}
                     >

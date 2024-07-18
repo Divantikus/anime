@@ -9,8 +9,8 @@ import { Loading } from 'src/load/Loading.tsx';
 import style from './styles/WatchPage.module.scss';
 
 export const WatchPage = () => {
-    const { id } = useParams();
-    const { data, isLoading, isError } = useQueryWatch(id ? +id : NaN);
+    const { slug } = useParams();
+    const { data, isLoading, isError } = useQueryWatch(slug);
     const {
         data: videoData,
         mutate,

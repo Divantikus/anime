@@ -20,7 +20,7 @@ export const DayWeek: FC<DayWeekProps> = ({ titles = [], dayWeek }) => {
                 return (
                     <Link
                         key={titleInfo.id}
-                        to={`/watch/${titleInfo.id}`}
+                        to={`/watch/${titleInfo.slug}`}
                         style={{ display: 'inline-block' }}
                         onClick={() => window.scroll(0, 0)}
                     >

@@ -1,41 +1,41 @@
-import {createBrowserRouter} from "react-router-dom";
-import {Registration} from "src/components/registration-form/Registration.tsx";
-import {WatchPage} from "src/components/pages/WatchPage.tsx";
-import {LoginForm} from "src/components/login-form/LoginForm.tsx";
-import {Schedule} from "src/components/pages/Schedule.tsx";
-import {MainPage} from "src/components/pages/MainPage.tsx";
-import {Releases} from "src/components/pages/Releases.tsx";
-import {App} from "src/components/App.tsx";
+import { createBrowserRouter } from 'react-router-dom';
+import { Registration } from 'src/components/registration-form/Registration.tsx';
+import { WatchPage } from 'src/components/pages/WatchPage.tsx';
+import { LoginForm } from 'src/components/login-form/LoginForm.tsx';
+import { Schedule } from 'src/components/pages/Schedule.tsx';
+import { MainPage } from 'src/components/pages/MainPage.tsx';
+import { Releases } from 'src/components/pages/Releases.tsx';
+import { App } from 'src/components/App.tsx';
 
 export const router = createBrowserRouter([
     {
-        path: "/",
-        element:<App/>,
+        path: '/',
+        element: <App />,
         children: [
             {
-                path: "/",
-                element: <MainPage/>
+                path: '/',
+                element: <MainPage />,
             },
             {
-                path: "releases/",
-                element: <Releases/>,
+                path: 'releases/',
+                element: <Releases />,
             },
             {
-                path: "schedule/",
-                element: <Schedule/>
+                path: 'schedule/',
+                element: <Schedule />,
             },
             {
-                path: "watch/:id",
-                element: <WatchPage/>,
+                path: 'watch/:slug',
+                element: <WatchPage />,
             },
         ],
     },
     {
-        path: "login/",
-        element: <LoginForm/>,
+        path: 'login/',
+        element: <LoginForm />,
     },
     {
         path: 'registration/',
-        element: <Registration/>
+        element: <Registration />,
     },
 ]);

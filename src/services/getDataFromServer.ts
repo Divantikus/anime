@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {
-    FilteringOptions,
-    FullDescriptionAnime,
+    ShortDescriptionAnime, SlugType, VideoData,
     NewsData, OptionsForGettingVideo,
+    FullDescriptionAnime,
+    FilteringOptions,
     ReleasesData,
     Schedule,
-    ShortDescriptionAnime, VideoData,
 } from 'src/services/types/DataFromServerTypes.ts';
 
 class getDataFromServer {
@@ -38,11 +38,11 @@ class getDataFromServer {
         return data.data;
     }
 
-    async getTitle(id: number) {
+    async getTitle(slug: SlugType) {
 
-        if (isNaN(id)) return 'incorrect data';
+        if (!slug) return 'incorrect data';
 
-        return await axios.get<FullDescriptionAnime>(this.watchURL + id);
+        return await axios.get<FullDescriptionAnime>(this.watchURL + slug);
     }
 
     async getVideo({episode, id}: OptionsForGettingVideo) {
