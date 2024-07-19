@@ -10,7 +10,7 @@ import { RegistrationCheckbox } from './registration-checkbox/RegistrationCheckb
 import { useRegistrationMutation } from 'src/hooks/useRegistrationMutation';
 import {
     emailSett,
-    usernameSett,
+    userNameSett,
 } from 'src/components/registration-form/RegistrationVar.ts';
 import style from '../login-form/LoginForm.module.scss';
 
@@ -31,7 +31,7 @@ export const Registration: FC = () => {
             <section className={style.mainRegForm}>
                 <form onSubmit={handleSubmit(submit)} className={style.form}>
                     <h1 className={style.title}>Registration</h1>
-                    <TemplateInput settings={usernameSett} />
+                    <TemplateInput settings={userNameSett} />
                     <TemplateInput settings={emailSett} />
                     <InputPassword />
                     <PasswordVerification />

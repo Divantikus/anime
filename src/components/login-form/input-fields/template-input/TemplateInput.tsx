@@ -53,8 +53,13 @@ export const TemplateInput: FC<TemplateInputProps> = ({ settings }) => {
             )}
             {errors[inputName]?.type === 'pattern' && (
                 <p className={style.errorMess}>
-                    The email address is incorrect
+                    {inputName === 'username' &&
+                        'Invalid username: Username must consist of letters, numbers and underscore'}
+                    {inputName === 'email' && 'The email address is incorrect'}
                 </p>
+            )}
+            {errors[inputName]?.type && (
+                <p className={style.errorMess}>{errors[inputName]?.message}</p>
             )}
         </>
     );

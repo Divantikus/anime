@@ -13,3 +13,12 @@ export const emailErrors: ErrorOption = {
     type: 'registered',
     message: 'An account with such an email has already been registered',
 };
+
+export const settingsUserName: RegisterOptions<TemplateInputReg> = {
+    required: true,
+    pattern: /^(?=.{4})[a-z][a-z\d]*_?[a-z\d]+$/i,
+};
+export const incorrectData: ErrorOption = {
+    type: 'incorrect data',
+    message: 'Incorrect username or password',
+};

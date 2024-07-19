@@ -5,8 +5,9 @@ import { SocialNetworks } from 'src/components/social-networks/SocialNetworks.ts
 import { VideoNotFound } from 'src/video-not-found/VideoNotFound.tsx';
 import { useQueryWatch } from 'src/hooks/useQueryWatch.ts';
 import { useParams } from 'react-router-dom';
-import { Loading } from 'src/load/Loading.tsx';
+import { Loading } from 'src/components/loading/Loading.tsx';
 import style from './styles/WatchPage.module.scss';
+import { LoadingVideo } from 'src/components/loading/loading-video/LoadingVideo.tsx';
 
 export const WatchPage = () => {
     const { slug } = useParams();
@@ -17,9 +18,11 @@ export const WatchPage = () => {
         isLoading: videoIsLoading,
     } = useMutationVideo();
 
-    if (data === 'incorrect data' || isError || !data) {
+    if (data === 'incorrect data' || isError) {
         return <div>Error (</div>;
     }
+
+    if (!data) return <></>;
 
     if (isLoading) {
         return <Loading height={15} />;
@@ -49,6 +52,7 @@ export const WatchPage = () => {
                         </video>
                     )}
                 </div>
+                {videoIsLoading && <LoadingVideo />}
                 {!data.episode_url && !videoIsLoading && <VideoNotFound />}
             </div>
             <SocialNetworks />

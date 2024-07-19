@@ -1,5 +1,5 @@
 import { useNewsData } from 'src/hooks/useNewsData.ts';
-import { Loading } from 'src/load/Loading.tsx';
+import { Loading } from 'src/components/loading/Loading.tsx';
 import style from './styles/MainPage.module.scss';
 
 // export const decodingJpgImg = 'data:image/jpg;base64,';

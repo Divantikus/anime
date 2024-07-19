@@ -49,6 +49,9 @@ export const InputPassword: FC = () => {
                     The password must be longer than 5 characters
                 </p>
             )}
+            {errors.password?.type && (
+                <p className={style.errorMess}>{errors.password.message}</p>
+            )}
         </>
     );
 };

@@ -2,7 +2,7 @@ import { PageSelectionButtons } from 'src/components/page-selection-buttons/Page
 import { useMutationReleases } from 'src/hooks/useMutationReleases.ts';
 import { useEffect, useState } from 'react';
 import { SearchForm } from 'src/components/search-form-by-parameters/SearchForm.tsx';
-import { Loading } from 'src/load/Loading.tsx';
+import { Loading } from 'src/components/loading/Loading.tsx';
 import { Card } from 'src/components/Card/Card.tsx';
 import { Link } from 'react-router-dom';
 import style from './styles/Releases.module.scss';

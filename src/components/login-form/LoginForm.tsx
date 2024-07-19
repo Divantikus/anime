@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { LoginData } from 'src/services/types/authDataTypes.ts';
 import { SubmitBtn } from './submit-btn/SubmitBtn';
-import { usernameSett } from 'src/components/registration-form/RegistrationVar.ts';
+import { userNameSett } from 'src/components/registration-form/RegistrationVar.ts';
 import { FormProvider } from 'react-hook-form';
 import { InputPassword } from './input-fields/input-password/InputPassword';
 import { useMyFormProv } from 'src/hooks/useMyFormProv.ts';
@@ -15,8 +15,9 @@ export const LoginForm: FC = () => {
         methods,
         handleSubmit,
         formState: { isValid },
+        setError,
     } = useMyFormProv<LoginData>();
-    const { mutate } = useLoginMutation();
+    const { mutate } = useLoginMutation(setError);
 
     const submitFn = (data: LoginData) => mutate(data);
 
@@ -25,7 +26,7 @@ export const LoginForm: FC = () => {
             <section className={style.flexContainer}>
                 <form className={style.form} onSubmit={handleSubmit(submitFn)}>
                     <h1 className={style.title}>Login</h1>
-                    <TemplateInput settings={usernameSett} />
+                    <TemplateInput settings={userNameSett} />
                     <InputPassword />
                     <Link to="/registration" className={style.link}>
                         Create new account

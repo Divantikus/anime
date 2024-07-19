@@ -1,5 +1,5 @@
 import { useQuerySideBar } from 'src/hooks/useQuerySideBar.ts';
-import { Loading } from 'src/load/Loading.tsx';
+import { Loading } from 'src/components/loading/Loading.tsx';
 import { Card } from 'src/components/Card/Card.tsx';
 import { Link } from 'react-router-dom';
 import style from './Sidebar.module.scss';
