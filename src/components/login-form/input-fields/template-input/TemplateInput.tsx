@@ -1,24 +1,10 @@
-import { RegisterOptions, useFormContext } from 'react-hook-form';
-import { FC, HTMLInputTypeAttribute } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { FC } from 'react';
 import style from '../InputStyles.module.scss';
-
-export interface TemplateInputReg {
-    username: string;
-    password: string;
-    email: string;
-}
-
-export interface TemplateInputParams {
-    img: string;
-    type: HTMLInputTypeAttribute;
-    inputName: 'username' | 'password' | 'email';
-    label: string;
-    inputSettings: RegisterOptions<TemplateInputReg> | undefined;
-}
-
-interface TemplateInputProps {
-    settings: TemplateInputParams;
-}
+import {
+    TemplateInputProps,
+    TemplateInputReg,
+} from 'src/components/login-form/input-fields/template-input/TemplateInputTypes.ts';
 
 export const TemplateInput: FC<TemplateInputProps> = ({ settings }) => {
     const { img, inputName, type, label, inputSettings } = settings;

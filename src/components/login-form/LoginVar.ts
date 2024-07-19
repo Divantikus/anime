@@ -1,5 +1,5 @@
 import { ErrorOption, RegisterOptions } from 'react-hook-form';
-import { TemplateInputReg } from 'src/components/login-form/input-fields/template-input/TemplateInput.tsx';
+import { TemplateInputReg } from 'src/components/login-form/input-fields/template-input/TemplateInputTypes.ts';
 
 export const settingsEmail: RegisterOptions<TemplateInputReg> = {
     required: true,

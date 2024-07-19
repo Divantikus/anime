@@ -1,4 +1,4 @@
-import { TemplateInputReg } from 'src/components/login-form/input-fields/template-input/TemplateInput.tsx';
+import { TemplateInputReg } from 'src/components/login-form/input-fields/template-input/TemplateInputTypes.ts';
 import { RegistrationData } from 'src/services/types/authDataTypes';
 import { UseFormSetError } from 'react-hook-form';
 import { authServices } from 'src/services/auth.services.ts';

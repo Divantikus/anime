@@ -1,11 +1,11 @@
+import { TemplateInputParams } from 'src/components/login-form/input-fields/template-input/TemplateInputTypes.ts';
+import { ErrorOption } from 'react-hook-form';
 import {
     settingsEmail,
     settingsUserName,
 } from 'src/components/login-form/LoginVar.ts';
-import { TemplateInputParams } from 'src/components/login-form/input-fields/template-input/TemplateInput.tsx';
 import emailIcon from 'public/login-img/email-icon.svg';
 import userIcon from 'public/registration-img/user.svg';
-import { ErrorOption } from 'react-hook-form';
 
 export const passwordConfirmation = {};
 
