@@ -36,7 +36,7 @@ export const WatchPage = () => {
                     <img
                         alt={data.title}
                         className={style.img}
-                        src={data.image_data}
+                        src={data.image_url}
                     />
                 </div>
                 <div className={style.videoContainer}>

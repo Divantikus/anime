@@ -13,7 +13,7 @@ export const Card: FC<CardProps> = ({ styles, info }) => {
             }}
             key={info.id}
         >
-            <img src={info.image_data} alt="poster" className={style.cardImg} />
+            <img src={info.image_url} alt="poster" className={style.cardImg} />
             <figcaption className={style.description}>
                 <h2
                     className={style.cardTitle}

@@ -2,13 +2,13 @@ export interface NewsData {
     id: number;
     title: string;
     url: string;
-    image_data: string;
+    image_url: string;
 }
 export interface ShortDescriptionAnime {
     id: number;
     slug: string;
     title: string;
-    image_data: string;
+    image_url: string;
     description: string;
     episodes_number: number;
 }
