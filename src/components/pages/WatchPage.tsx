@@ -1,32 +1,33 @@
+import { useLoaderData, useParams } from 'react-router-dom';
 import { useMutationVideo } from 'src/hooks/useMutationVideo.ts';
 import { AnimeDescription } from 'src/components/AnimeDescription/AnimeDescription.tsx';
 import { EpisodeButtons } from 'src/components/episode-buttons/EpisodeButtons.tsx';
 import { SocialNetworks } from 'src/components/social-networks/SocialNetworks.tsx';
+import { LoaderDataType } from 'src/components/pages/types/WatchPageTypes.ts';
 import { VideoNotFound } from 'src/video-not-found/VideoNotFound.tsx';
-import { useQueryWatch } from 'src/hooks/useQueryWatch.ts';
-import { useParams } from 'react-router-dom';
-import { Loading } from 'src/components/loading/Loading.tsx';
-import style from './styles/WatchPage.module.scss';
 import { LoadingVideo } from 'src/components/loading/loading-video/LoadingVideo.tsx';
+import style from './styles/WatchPage.module.scss';
+// todo убрать эту хуйню
 
 export const WatchPage = () => {
-    const { slug } = useParams();
-    const { data, isLoading, isError } = useQueryWatch(slug);
+    const data = useLoaderData() as LoaderDataType;
+    // const { data, isLoading, isError } = useQueryWatch(slug);
     const {
         data: videoData,
         mutate,
         isLoading: videoIsLoading,
     } = useMutationVideo();
+    console.log(data);
 
-    if (data === 'incorrect data' || isError) {
+    if (data === 'incorrect data') {
         return <div>Error (</div>;
     }
 
-    if (!data) return <></>;
+    if (!data) return <>Loading...</>;
 
-    if (isLoading) {
-        return <Loading height={15} />;
-    }
+    // if (isLoading) {
+    //     return <Loading height={15} />;
+    // }
 
     return (
         <section>
