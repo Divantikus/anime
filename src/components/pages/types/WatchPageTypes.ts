@@ -1,3 +1,6 @@
 import { FullDescriptionAnime } from 'src/services/types/DataFromServerTypes.ts';
+import { AxiosResponse } from 'axios';
 
-export type LoaderDataType = 'incorrect data' | FullDescriptionAnime;
+export interface LoaderDataType {
+    axiosData: AxiosResponse<FullDescriptionAnime>;
+}

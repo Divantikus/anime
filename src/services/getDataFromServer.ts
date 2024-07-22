@@ -39,9 +39,6 @@ class getDataFromServer {
     }
 
     async getTitle(slug: SlugType) {
-
-        if (!slug) return 'incorrect data';
-
         return await axios.get<FullDescriptionAnime>(this.watchURL + slug);
     }
 
