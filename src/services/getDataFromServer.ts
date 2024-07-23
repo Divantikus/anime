@@ -10,7 +10,7 @@ import {
 
 class getDataFromServer {
 
-    private baseURL = 'http://localhost:8000/';
+    private baseURL = `http://${import.meta.env.VITE_DOMAINE}:${import.meta.env.VITE_PORT}/`;
     private releaseURL = this.baseURL + 'release/';
     private filterURL = this.releaseURL + "filter/"
     private watchURL = this.releaseURL + 'watch/'

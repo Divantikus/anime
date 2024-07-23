@@ -5,7 +5,7 @@ import {
 import axios from 'axios';
 
 class Auth {
-    private baseURL = 'http://localhost:8000/user/';
+    private baseURL = `http://${import.meta.env.VITE_DOMAINE}:${import.meta.env.VITE_PORT}/user/`;
 
     private createFormData(data: LoginData | RegistrationData) {
         const formData = new FormData();
