@@ -1,30 +1,22 @@
 import { selectEpisodeStyles } from 'src/components/episode-buttons/selectEpisodeStyles.ts';
 import Select, { SingleValue } from 'react-select';
-import { UseMutateFunction } from 'react-query';
-import {
-    FullDescriptionAnime,
-    OptionsForGettingVideo,
-    VideoData,
-} from 'src/services/types/DataFromServerTypes.ts';
+import { EpisodeButtonsProps } from 'src/components/episode-buttons/EpisodeButtonsTypes.ts';
 import {
     createEpisodeButton,
     SelectOption,
 } from 'src/functions/createEpisodeButton.ts';
 import { FC } from 'react';
 
-export interface EpisodeButtonsProps {
-    mutate: UseMutateFunction<VideoData, unknown, OptionsForGettingVideo>;
-    id: number;
-    data: FullDescriptionAnime;
-}
-
 export const EpisodeButtons: FC<EpisodeButtonsProps> = ({
     mutate,
     id,
     data,
 }) => {
-    const changeVideo = (changeVideoEvent: SingleValue<SelectOption>) => {
+    const changeVideo = (event: unknown) => {
+        const changeVideoEvent = event as SingleValue<SelectOption>;
+
         if (!changeVideoEvent) return;
+
         mutate({ episode: +changeVideoEvent.value, id: id });
     };
 

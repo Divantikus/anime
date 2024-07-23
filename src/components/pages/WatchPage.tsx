@@ -27,6 +27,8 @@ export const WatchPage = () => {
                 errorElement={<div>Error (</div>}
                 children={(axiosData: AxiosResponse<FullDescriptionAnime>) => {
                     const { data } = axiosData;
+                    const currentEpisodeUrl =
+                        videoData?.episode_url || data.episode_url;
                     return (
                         <section>
                             <div className={style.watch}>
@@ -44,7 +46,7 @@ export const WatchPage = () => {
                                         data={data}
                                         mutate={mutate}
                                     />
-                                    {data.episode_url && (
+                                    {data.episode_url && !videoIsLoading && (
                                         <video
                                             controls={true}
                                             className={style.video}
@@ -52,8 +54,7 @@ export const WatchPage = () => {
                                             <source
                                                 className={style.videotttt}
                                                 src={
-                                                    videoData?.episode_url ||
-                                                    data.episode_url
+                                                    currentEpisodeUrl as string
                                                 }
                                                 type={videoData?.content_type}
                                             />
