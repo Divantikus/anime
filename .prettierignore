@@ -1,2 +1,3 @@
 /src/services/getDataFromServer.ts
 /src/router/Router.tsx
+/src/components/header/nav-bar/Header.tsx

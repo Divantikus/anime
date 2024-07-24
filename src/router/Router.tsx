@@ -7,6 +7,7 @@ import { Schedule } from 'src/components/pages/Schedule.tsx';
 import { MainPage } from 'src/components/pages/MainPage.tsx';
 import { Releases } from 'src/components/pages/Releases.tsx';
 import { App } from 'src/components/App.tsx';
+import { DonatePage } from 'src/components/pages/DonatePage.tsx';
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
                 element: <WatchPage />,
                 loader: downloadFullInformationAboutAnime,
                 shouldRevalidate: ({currentUrl, nextUrl}) => !(currentUrl.pathname === nextUrl.pathname)
+            },
+            {
+              path: 'donate/',
+              element: <DonatePage/>
             },
         ],
     },
