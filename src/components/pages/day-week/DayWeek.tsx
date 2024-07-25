@@ -1,6 +1,5 @@
+import { CreatingMultipleCards } from 'src/components/Creating-multiple-cards/CreatingMultipleCards.tsx';
 import { DayWeekProps } from 'src/components/pages/day-week/DayWeekTypes.ts';
-import { Link } from 'react-router-dom';
-import { Card } from 'src/components/Card/Card.tsx';
 import { FC } from 'react';
 import style from './DayWeek.module.scss';
 
@@ -16,18 +15,10 @@ export const DayWeek: FC<DayWeekProps> = ({ titles = [], dayWeek }) => {
     return (
         <div className={style.day}>
             <p className={style.dayName}>{dayWeek}</p>
-            {titles.map((titleInfo) => {
-                return (
-                    <Link
-                        key={titleInfo.id}
-                        to={`/watch/${titleInfo.slug}`}
-                        style={{ display: 'inline-block' }}
-                        onClick={() => window.scroll(0, 0)}
-                    >
-                        <Card styles={cardStyles} info={titleInfo} />
-                    </Link>
-                );
-            })}
+            <CreatingMultipleCards
+                arrayWithAnimeData={titles}
+                cardStyles={cardStyles}
+            />
         </div>
     );
 };

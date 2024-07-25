@@ -1,7 +1,6 @@
+import { CreatingMultipleCards } from 'src/components/Creating-multiple-cards/CreatingMultipleCards.tsx';
 import { useQuerySideBar } from 'src/hooks/useQuerySideBar.ts';
 import { Loading } from 'src/components/loading/Loading.tsx';
-import { Card } from 'src/components/Card/Card.tsx';
-import { Link } from 'react-router-dom';
 import style from './Sidebar.module.scss';
 
 const cardStyles = {
@@ -36,18 +35,10 @@ export const Sidebar = () => {
                     type="text"
                 />
             </div>
-            {lastUploaded.map((titleInfo) => {
-                return (
-                    <Link
-                        key={titleInfo.id}
-                        to={`/watch/${titleInfo.slug}`}
-                        style={{ display: 'inline-block' }}
-                        onClick={() => window.scroll(0, 0)}
-                    >
-                        <Card styles={cardStyles} info={titleInfo} />
-                    </Link>
-                );
-            })}
+            <CreatingMultipleCards
+                arrayWithAnimeData={lastUploaded}
+                cardStyles={cardStyles}
+            />
         </aside>
     );
 };
