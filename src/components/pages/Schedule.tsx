@@ -1,4 +1,3 @@
-import { ShortDescriptionAnime } from 'src/services/types/DataFromServerTypes.ts';
 import { useQuerySchedule } from 'src/hooks/useQuerySchedule.ts';
 import { Loading } from 'src/components/loading/Loading.tsx';
 import { DayWeek } from 'src/components/pages/day-week/DayWeek.tsx';
@@ -11,7 +10,7 @@ export const Schedule = () => {
         return <Loading height={20} />;
     }
 
-    if (isError) {
+    if (isError || (!schedule && !isLoading)) {
         return <div>Error (</div>;
     }
 
@@ -26,34 +25,13 @@ export const Schedule = () => {
                 Если серии задерживаются — это будет указано в статусе релиза
                 (над постером).
             </p>
-            <DayWeek
-                titles={schedule?.mon as ShortDescriptionAnime[]}
-                dayWeek={'ПОНЕДЕЛЬНИК'}
-            />
-            <DayWeek
-                titles={schedule?.tue as ShortDescriptionAnime[]}
-                dayWeek={'ВТОРНИК'}
-            />
-            <DayWeek
-                titles={schedule?.wed as ShortDescriptionAnime[]}
-                dayWeek={'СРЕДА'}
-            />
-            <DayWeek
-                titles={schedule?.thu as ShortDescriptionAnime[]}
-                dayWeek={'ЧЕТВЕРГ'}
-            />
-            <DayWeek
-                titles={schedule?.fri as ShortDescriptionAnime[]}
-                dayWeek={'ПЯТНИЦА'}
-            />
-            <DayWeek
-                titles={schedule?.sat as ShortDescriptionAnime[]}
-                dayWeek={'СУББОТА'}
-            />
-            <DayWeek
-                titles={schedule?.sun as ShortDescriptionAnime[]}
-                dayWeek={'ВОСКРЕСЕНЬЕ'}
-            />
+            <DayWeek titles={schedule.mon} dayWeek={'ПОНЕДЕЛЬНИК'} />
+            <DayWeek titles={schedule.tue} dayWeek={'ВТОРНИК'} />
+            <DayWeek titles={schedule.wed} dayWeek={'СРЕДА'} />
+            <DayWeek titles={schedule.thu} dayWeek={'ЧЕТВЕРГ'} />
+            <DayWeek titles={schedule.fri} dayWeek={'ПЯТНИЦА'} />
+            <DayWeek titles={schedule.sat} dayWeek={'СУББОТА'} />
+            <DayWeek titles={schedule.sun} dayWeek={'ВОСКРЕСЕНЬЕ'} />
         </section>
     );
 };
