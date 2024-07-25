@@ -1,8 +1,85 @@
 .flexContainer{
+  gap: 0 30px;
   display: flex;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #FFFFFF;
   justify-content: space-between;
 }
 .donateForm{
-  border-top: 2px solid gray;
-  border-left: 2px solid gray;
+  padding: 15px;
+  border-top: 2px solid #b0b0b0;
+  border-left: 2px solid #b0b0b0;
+  flex: 0 1 40%;
+}
+.formTitle{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.label{
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: rgba(131, 131, 131, 0.78);
+}
+.inputContainer{
+  margin-bottom: 10px;
+  position: relative;
+  &:before{
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    content: url("public/donate/receipt-russian-ruble.svg");
+  }
+}
+.inputSum{
+  margin: 0;
+  width: 100%;
+  outline: none;
+  transition: 0.3s;
+  border-radius: 10px;
+  border: 3px solid #b2b2b2;
+  padding: 7px 25px 7px 10px;
+  &:hover{
+    border: 3px solid #9d47ff
+  }
+  &:focus{
+    border: 3px solid #7c18ee;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type=number]{
+    -moz-appearance: textfield;
+  }
+}
+.errorMes{
+  color: red;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.donateButton{
+  width: 100%;
+  border: none;
+  display: flex;
+  color: #FFFFFF;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px 0;
+  background: #7c18ee;
+  justify-content: center;
+  border-radius: 10px;
+  transition: 0.3s;
+  &:hover{
+    background: #450091;
+  }
+}
+.cardsNumbers{
+  display: flex;
+  gap: 10px 0;
+  flex-direction: column;
 }

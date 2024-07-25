@@ -1,0 +1,8 @@
+.linkPar{
+  text-align: center;
+}
+.link{
+  &:hover{
+    color: #4a90e2;
+  }
+}

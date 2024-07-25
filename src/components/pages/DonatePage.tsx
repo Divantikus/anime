@@ -1,59 +1,44 @@
+import { inputSumOptions } from 'src/components/pages/variables/DonatePageVariables.ts';
+import { DonateLinks } from 'src/components/WatchPageComponents/Table/DonateLinks/DonateLinks.tsx';
+import { DonateTable } from 'src/components/WatchPageComponents/Table/DonateTable.tsx';
+import { IFormDonate } from 'src/components/pages/types/DonatePageTypes.ts';
 import { useForm } from 'react-hook-form';
 import style from './styles/DonatePage.module.scss';
-
-interface IForm {
-    sum: number;
-}
 
 export const DonatePage = () => {
     const {
         register,
         formState: { errors },
         handleSubmit,
-    } = useForm<IForm>();
+    } = useForm<IFormDonate>({
+        mode: 'onBlur',
+    });
 
-    const submit = (event: IForm) => {};
+    const submit = (formEvent: IFormDonate) => {};
 
     return (
         <section className={style.flexContainer}>
             <form className={style.donateForm} onSubmit={handleSubmit(submit)}>
                 <h2 className={style.formTitle}>Перевод по кнопке</h2>
-                <label htmlFor="sum">Сколько</label>
-                <input type="number" {...register('sum')} id="sum" />
-                {errors.sum && (
+                <label htmlFor="sum" className={style.label}>
+                    Сколько
+                </label>
+                <div className={style.inputContainer}>
+                    <input
+                        id="sum"
+                        type="number"
+                        className={style.inputSum}
+                        {...register('sum', inputSumOptions)}
+                    />
+                </div>
+                {errors.sum?.type === 'isAmountMoreTwo' && (
                     <p className={style.errorMes}>Минимум 2 рубля</p>
                 )}
-                <button></button>
+                <button className={style.donateButton}>Пожертвовать</button>
             </form>
             <div className={style.cardsNumbers}>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>Яндекс деньги</td>
-                            <td>4100115839344905</td>
-                        </tr>
-                        <tr>
-                            <td>Webmoney</td>
-                            <td>Больше не поддерживается</td>
-                        </tr>
-                        <tr>
-                            <td>PayPal</td>
-                            <td>Временно не поддерживается</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>
-                    <a href="https://www.patreon.com/anilibria">
-                        https://www.patreon.com/anilibria
-                    </a>
-                    - ежемесячное добровольное пожертвование!
-                </p>
-                <p>
-                    <a href="https://boosty.to/anilibriatv">
-                        https://boosty.to/anilibriatv
-                    </a>
-                    - ежемесячное добровольное пожертвование!
-                </p>
+                <DonateTable />
+                <DonateLinks />
             </div>
         </section>
     );

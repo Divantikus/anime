@@ -1,0 +1,17 @@
+.table{
+  width: 100%;
+  tr{
+    border: 1px solid #e5e5e5;
+  }
+  td{
+    display: inline-block;
+    width: calc(100% - 150px);
+    font-size: 18px;
+    padding: 10px 5px;
+    border: 1px solid #e5e5e5;
+  }
+  .firstTd{
+    width: 150px;
+    display: inline-block;
+  }
+}
