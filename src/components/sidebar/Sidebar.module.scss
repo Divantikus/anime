@@ -1,35 +1,11 @@
 .sideBar{
-  display: flex;
-  flex-direction: column;
   gap: 10px 0;
+  display: flex;
   padding: 10px;
+  grid-row: span 2;
+  position: relative;
   border-radius: 4px;
   background: #383838;
-  grid-row: span 2;
+  flex-direction: column;
 }
-.inputContainer{
-  position: relative;
-  &:before{
-    content: url("src/img/sidebar/loupe.svg");
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    z-index: 100;
-    right: 3px;
-    top: 3px;
-  }
-}
-.input{
-  width: 100%;
-  padding: 6px 30px 6px 12px;
-  outline: none;
-  border-color: transparent;
-  transition: 0.3s;
-  border-radius: 4px;
-  &:focus{
-    -webkit-box-shadow: 0px -1px 28px 3px rgba(255, 255, 255, 1);
-    -moz-box-shadow: 0px -1px 28px 3px rgba(255, 255, 255, 1);
-    box-shadow: 0px -1px 28px 3px rgba(255, 255, 255, 1);
 
-  }
-}

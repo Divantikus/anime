@@ -1,5 +1,6 @@
 import { CreatingMultipleCards } from 'src/components/Creating-multiple-cards/CreatingMultipleCards.tsx';
 import { useQuerySideBar } from 'src/hooks/useQuerySideBar.ts';
+import { InputSidebar } from 'src/components/sidebar/input-sidebar/InputSidebar.tsx';
 import { Loading } from 'src/components/loading/Loading.tsx';
 import style from './Sidebar.module.scss';
 
@@ -23,18 +24,17 @@ export const Sidebar = () => {
     }
 
     if (isError || !lastUploaded) {
-        return <div>Error (</div>;
+        return (
+            <aside className={style.sideBar}>
+                <InputSidebar />
+                <p>error (</p>
+            </aside>
+        );
     }
 
     return (
         <aside className={style.sideBar}>
-            <div className={style.inputContainer}>
-                <input
-                    placeholder="Найти аниме по названию"
-                    className={style.input}
-                    type="text"
-                />
-            </div>
+            <InputSidebar />
             <CreatingMultipleCards
                 arrayWithAnimeData={lastUploaded}
                 cardStyles={cardStyles}

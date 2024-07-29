@@ -2,18 +2,19 @@ import axios from 'axios';
 import {
     ShortDescriptionAnime, SlugType, VideoData,
     NewsData, OptionsForGettingVideo,
+    Schedule, AnimeDescFromSearch,
     FullDescriptionAnime,
     FilteringOptions,
     ReleasesData,
-    Schedule,
 } from 'src/services/types/DataFromServerTypes.ts';
 
 class getDataFromServer {
 
     private baseURL = `http://${import.meta.env.VITE_DOMAINE}:${import.meta.env.VITE_PORT}/`;
     private releaseURL = this.baseURL + 'release/';
-    private filterURL = this.releaseURL + "filter/"
-    private watchURL = this.releaseURL + 'watch/'
+    private filterURL = this.releaseURL + 'filter/';
+    private watchURL = this.releaseURL + 'watch/';
+    private searchUrl = this.baseURL + 'search/';
 
     async getNewsData() {
         return await axios.get<NewsData[]>(this.baseURL + 'main_page');
@@ -44,6 +45,11 @@ class getDataFromServer {
 
     async getVideo({episode, id}: OptionsForGettingVideo) {
         const data = await axios.get<VideoData>(this.watchURL + id + '/' + episode);
+        return data.data
+    }
+
+    async getSearchData(titleName: string){
+        const data = await axios.get<AnimeDescFromSearch[]>(this.searchUrl + '?title=' + titleName)
         return data.data
     }
 }

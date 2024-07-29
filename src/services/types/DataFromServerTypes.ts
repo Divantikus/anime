@@ -1,7 +1,7 @@
 export interface NewsData {
     id: number;
-    title: string;
     url: string;
+    title: string;
     image_url: string;
 }
 export interface ShortDescriptionAnime {
@@ -25,11 +25,11 @@ export interface Schedule {
 export type Season = ['winter'?, 'summer'?, 'autumn'?, 'spring'?];
 
 export interface FilteringOptions {
-    genres: string[];
     year: number[];
     season: Season;
-    popular_or_new: 'popular' | 'new';
+    genres: string[];
     is_completed: true | null;
+    popular_or_new: 'popular' | 'new';
 }
 
 export interface FullDescriptionAnime extends ShortDescriptionAnime {
@@ -39,9 +39,9 @@ export interface FullDescriptionAnime extends ShortDescriptionAnime {
     voices: string[];
     timings: string[];
     subtitles: string[];
+    episode_number: number;
     favorites_count: number;
     episode_url: string | null;
-    episode_number: number;
 }
 
 export interface ReleasesData {
@@ -50,8 +50,8 @@ export interface ReleasesData {
 }
 
 export interface OptionsForGettingVideo {
-    episode: number;
     id: number;
+    episode: number;
 }
 
 export interface VideoData {
@@ -60,3 +60,10 @@ export interface VideoData {
 }
 
 export type SlugType = string | undefined;
+
+export interface AnimeDescFromSearch {
+    id: number;
+    slug: string;
+    title: string;
+    image_url: string;
+}
