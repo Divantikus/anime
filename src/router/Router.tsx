@@ -8,6 +8,7 @@ import { MainPage } from 'src/components/pages/MainPage.tsx';
 import { Releases } from 'src/components/pages/Releases.tsx';
 import { App } from 'src/components/App.tsx';
 import { DonatePage } from 'src/components/pages/DonatePage.tsx';
+import { Test } from 'src/components/test/Test.tsx';
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
               path: 'donate/',
               element: <DonatePage/>
             },
+            {
+                path: 'test/',
+                element: <Test/>
+            }
         ],
     },
     {

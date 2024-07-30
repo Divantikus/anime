@@ -18,15 +18,21 @@ class Auth {
     async login(options: LoginData) {
         return await axios.postForm(
             this.baseURL + 'login/',
-            this.createFormData(options)
+            this.createFormData(options),{withCredentials: true}
         );
     }
 
     async registration(options: RegistrationData) {
         return await axios.postForm(
             this.baseURL + 'signup/',
-            this.createFormData(options)
+            this.createFormData(options),{withCredentials: true}
         );
+    }
+
+    async getProfile(){
+        const data = await axios.get(this.baseURL + 'profile', {withCredentials: true})
+        console.log(data);
+        return data
     }
 }
 
